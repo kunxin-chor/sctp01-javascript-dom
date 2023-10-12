@@ -1,30 +1,76 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <div class="container">
-        <h1>Favourite Holiday Destinations</h1>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Favourite Holiday Destinations</h1>
+    <div>
+      <div>
+        <label>First Name:</label>
+        <!-- We use `id` because we only have to ask for the first name once -->
+        <input type="text" class="form-control" id="first-name" />
+      </div>
+      <div>
+        <label>Last Name:</label>
+        <input type="text" class="form-control" id="last-name" />
+      </div>
+      <div>
+        <label>
+          Will you be keen to eat raw fishes off the coast of Japan?
+        </label>
         <div>
-            <div>
-                <label>First Name:</label>
-                <input type="text" class="form-control" id="first-name"/>
-            </div>
-            <div>
-                <label>Last Name:</label>
-                <input type="text" class="form-control" id="last-name"/>
-            </div>
-            <input type="button" value="Submit" id="submit-btn"/>
+          <!-- For radio buttons to work correctly, all the radio buttons
+                in the same group must have the same value for their name attribute -->
+          <input type="radio" name="fish" class="fish ms-2 me-2"
+            value="strongly-agree" checked><label>Strongly Agree</label>
+          <input type="radio" name="fish" class="fish ms-2 me-2"
+            value="agree"><label> Agree</label>
+          <input type="radio" name="fish" class="fish ms-2 me-2"
+            value="disagree"><label> Disagree</label>
+          <input type="radio" name="fish" class="fish ms-2 me-2"
+            value="strongly-disagree"><label> Strongly Disagree</label>
         </div>
+      </div>
+      <div>
+        <label>Which country do you intend to visit next?</label>
+        <div>
+          <input type="checkbox" class="country"
+            value="malaysia"><label>Malaysia</label>
+          <input type="checkbox" class="country"
+            value="japan"><label>Japan</label>
+          <input type="checkbox" class="country"
+            value="south-korea"><label>South Korea</label>
+        </div>
+      </div>
+      <div>
+        <label>Occupation</label>
+        <select id="occupation" class="form-control">
+          <option value="student">Student</option>
+          <option value="white-collar">White Collar</option>
+          <option value="retired">Retired</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
     </div>
-   <script src="script.js"></script>
-  </body>
+    <input type="button" value="Submit" id="submit-btn" />
+  </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
