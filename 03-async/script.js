@@ -30,11 +30,11 @@ async function loadData() {
     // the JavaScript will execute the next instruction that it can
     const response = await axios.get("data.txt");
     return response.data;
-    
 }
 
 document.querySelector("#loadDataBtn")
     .addEventListener("click", async function() {
-       const data = await  loadData();
+       const data = loadData();
+       console.log(data);
        document.querySelector("#output").innerHTML = data;
     })
