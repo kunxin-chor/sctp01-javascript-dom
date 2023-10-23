@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", async function(){
     const paths = await loadData();
     
     function renderCyclingPaths() {
-            // GeoJSON layer
-    const cyclingPathLayer = L.geoJSON(paths);
-    cyclingPathLayer.addTo(mapObject);
-    // mapObject.add(cyclingPathLayer);
+        // GeoJSON layer
+        const cyclingPathLayer = L.geoJSON(paths);
+        cyclingPathLayer.addTo(mapObject);
+        // mapObject.add(cyclingPathLayer);
     }
 
     renderCyclingPaths();
