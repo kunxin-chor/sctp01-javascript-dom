@@ -1,5 +1,5 @@
-async function loadCycling() {
-    const response = await axios.get("data/cycling.geojson");
+async function loadJSON(filePath) {
+    const response = await axios.get(filePath);
     return response.data;
 }
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }).addTo(mapObject);
 
     // load in the cycling tracks
-    const cycling = await loadCycling();
+    const cycling = await loadJSON("data/cycling.geojson");
     // L.geoJson takes two paramters
     // 1. the GeoJSON object
     // 2. an object that provide configuration options
@@ -52,6 +52,30 @@ document.addEventListener("DOMContentLoaded", async function () {
     })
     // customize the geoJson layer
     cyclingLayer.addTo(mapObject);
+
+    const nparks = await loadJSON("data/nparks.geojson");
+    const nparkLayer = L.geoJSON(nparks, {
+        onEachFeature:function(feature, layer) {
+            const html = feature.properties.Description;
+            const tempElement = document.createElement("div");
+            tempElement.innerHTML = html;
+            const allTDs = tempElement.querySelectorAll('td');
+            const region = allTDs[0].innerHTML;
+            const agency = allTDs[0].innerHTML;
+            layer.bindPopup(`<h1>${region}</h1><h2>${agency}</h2>`);
+        }
+    })
+    nparkLayer.setStyle({
+        color:"green"
+    })
+    nparkLayer.addTo(mapObject);
+
+    // the first parameter is for the base layers (only one can be active and there always be one active)
+    // the second parameter for the overlay (optional - can none active or more than one active)
+    L.control.layers({}, {
+        "LTA": cyclingLayer,
+        "NParks": nparkLayer
+    }).addTo(mapObject);
 
 })
 
