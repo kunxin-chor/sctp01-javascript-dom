@@ -48,14 +48,18 @@ document.addEventListener("DOMContentLoaded", async function(){
         const marker = L.marker(coordinate);
         marker.addTo(searchResultLayer);
         marker.bindPopup(function(){
+            console.log(r);
             const element = document.createElement('div');
-            element.innerHTML = `<h1>${r.name}</h1>
-                <button>Click me</button>;
-            `;
-            const button = element.querySelector("button");
-            button.addEventListener("click", function(){
-                alert("do whatever you want here");
-            })
+            element.innerHTML = `<h1>${r.name}</h1>`;
+            async function getPicture() {
+                const photos = await fetchVenuePhotos(r.fsq_id);
+           
+                const firstPhotoImage = photos[0];
+                console.log(firstPhotoImage.suffix)
+                element.innerHTML += `<img src="${firstPhotoImage.prefix}200x200${firstPhotoImage.suffix}">`
+            }
+            getPicture();
+           
             return element;
         });
         marker.addEventListener("click", function(){

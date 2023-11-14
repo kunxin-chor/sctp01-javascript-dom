@@ -20,3 +20,14 @@ async function find(searchTerms, lat, lng, radius=1000) {
     return response.data;
 }
 
+async function fetchVenuePhotos(venueId) {
+    const url = `https://api.foursquare.com/v3/places/${venueId}/photos`;
+    const response = await fetch(url, {
+        headers: {
+            'Authorization': 'fsq3jhVKTC5HY3RD1RoOpjxNLUSVMxf122XO4sUGIqpAA2w='
+        }
+    });
+    const data = await response.json();
+    return data; // Adjust this according to the actual response structure of v3
+}
+
